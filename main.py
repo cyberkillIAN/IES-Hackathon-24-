@@ -13,7 +13,6 @@ def make_recipt(card_number, items):
         "items": items,
         "valid_until": datetime.now() + timedelta(minutes=10)
     }
-
     return recipt
 
 def make_old_recipt(card_number, items):
@@ -23,7 +22,15 @@ def make_old_recipt(card_number, items):
         "items": items,
         "valid_until": datetime.now() + timedelta(minutes=10)
     }
+    return recipt
 
+def make_invalid_recipt(card_number, items):
+    # make recipt
+    recipt = {
+        "student_card_number": card_number,
+        "items": items,
+        "valid_until": datetime.now() - timedelta(minutes=10)
+    }
     return recipt
 
 def print_recipt(recipt):
@@ -48,8 +55,9 @@ def check_if_valid(recipt):
 # Main function
 def main():
     # read
-    #card_number = read_rfid()
-    print("starting")
+    # while True:
+    #   card_number = read_rfid()
+    print("starting\n")
     card_number = "1234567890"
 
     items_1 = [
@@ -101,7 +109,7 @@ def main():
     recipt3 = make_old_recipt(card_number, items_3)
     print_recipt(recipt2)
     print_recipt(recipt3)
-    print("done")
+    print("\ndone")
 
 # Run the main function
 if __name__ == "__main__":
