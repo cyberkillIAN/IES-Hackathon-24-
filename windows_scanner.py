@@ -2,7 +2,7 @@ import usb.core
 import usb.util
 
 # Find the RFID reader device
-device = usb.core.find(idVendor=YOUR_VENDOR_ID, idProduct=YOUR_PRODUCT_ID)
+device = usb.core.find(idVendor="1A86", idProduct="DD01")
 
 if device is None:
     raise ValueError('Device not found')
