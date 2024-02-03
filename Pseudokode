@@ -1,1 +1,19 @@
+Pseudokode:
 
+
+Lagre kvitering på bruker:
+
+kvittering = data_fra_kjøp() // lagrer dataen fra kjøpet
+bruker = input_kortleser() // får ut et tall eller noe som beskriver hvilken bruker som betalte
+
+KvitteringsDatabase[bruker].append(kvittering) // legger til kvitteringen i clouden til brukeren.
+for 10 min:
+  kvitteringsdatabase_access[bruker] = 1
+
+Tæppe på vei ut:
+
+bruker = input_kortleser()
+if kvitteringsdatabase_access[bruker] = 1:
+  opengate() // Evt led med smiley
+else:
+  closegate() // evt led med kryss
