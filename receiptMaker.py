@@ -47,11 +47,16 @@ def print_receipt(receipt):
     print(f"Valid Until: {valid_until}")
 
 def PaaVeiUt(receipt):
-    card_number = read_rfid()
-    if card_number == receipt["student_card_number"]:
-        print ("Godkjent du kan passere")
-    else:
-        print("Du har ikke betalt")
+    while True:
+        # Read the card number
+        card_number = read_rfid()
+        print(f"Card Number (Decimal): {card_number}")
+
+        if card_number == receipt["student_card_number"]:
+            print("Godkjent du kan passere")
+            break  # Exit the loop if the card is valid
+        else:
+            print("Du har ikke betalt")
 
 
 # Main function
@@ -72,16 +77,14 @@ def main():
         # Print the receipt
         print_receipt(receipt)
 
-        # Close the serial port
         ser.close()
+        input("Vent litt...")
+        ser.open()
 
+        # Close the serial port
         PaaVeiUt(receipt) # riktig kort
 
         ser.close()
-
-        PaaVeiUt(receipt) # feil kort
-
-        ser. close()
 # Run the main function
 if __name__ == "__main__":
     main()
