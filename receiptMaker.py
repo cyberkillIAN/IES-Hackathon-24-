@@ -46,6 +46,14 @@ def print_receipt(receipt):
     valid_until = receipt['valid_until'].strftime('%Y-%m-%d %H:%M:%S')
     print(f"Valid Until: {valid_until}")
 
+def PaaVeiUt(receipt):
+    card_number = read_rfid()
+    if card_number == receipt["student_card_number"]:
+        print ("Godkjent du kan passere")
+    else:
+        print("Du har ikke betalt")
+
+
 # Main function
 def main():
     # Read RFID data from the Arduino
@@ -67,6 +75,13 @@ def main():
         # Close the serial port
         ser.close()
 
+        PaaVeiUt(receipt) # riktig kort
+
+        ser.close()
+
+        PaaVeiUt(receipt) # feil kort
+
+        ser. close()
 # Run the main function
 if __name__ == "__main__":
     main()
