@@ -15,6 +15,17 @@ def make_recipt(card_number, items):
     }
     return recipt
 
+def read_rfid(serial_unit):
+    # Read the RFID card number
+    if serial_unit.in_waiting > 0:
+        line = serial_unit.readline().decode('utf-8').rstrip()
+        # Check if line contains "In dec:"
+        if "In dec:" in line:
+            # Extract the decimal values
+            dec_values = line.split("In dec: ")[1]
+            # Process the decimal values as needed
+    return dec_values
+
 def make_old_recipt(card_number, items):
     # make recipt
     recipt = {
@@ -54,11 +65,11 @@ def check_if_valid(recipt):
 
 # Main function
 def main():
-    # read
-    # while True:
-    #   card_number = read_rfid()
+    ser = serial.Serial('/dev/cu.usbserial-2130', 9600, timeout=1)
+    ser.flush()
+    card_number = read_rfid(serial_unit=ser)
     print("starting\n")
-    card_number = "1234567890"
+    #card_number = "1234567890"
 
     items_1 = [
         {
